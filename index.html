@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ગુજરાત ઇ-નગર - પ્રોપર્ટી મેનેજમેન્ટ પોર્ટલ</title>
+    <title>ગુજરાત ઇ-નગર - સુરક્ષિત પોર્ટલ</title>
     <!-- Google Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,6 +13,7 @@
             --primary: #1565c0;
             --secondary: #ff8f00;
             --success: #2e7d32;
+            --danger: #c62828;
             --bg-color: #f4f7f6;
             --text-color: #333;
         }
@@ -49,13 +50,6 @@
             font-size: 22px;
             font-weight: 700;
         }
-        .helpline {
-            background: rgba(255,255,255,0.15);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-        }
         .container {
             max-width: 1200px;
             margin: 30px auto;
@@ -88,7 +82,6 @@
         .tab-btn.active {
             background-color: var(--primary);
             color: white;
-            box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
         }
         .section-box {
             display: none;
@@ -132,7 +125,6 @@
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 14px;
-            transition: border 0.3s;
         }
         input:focus, select:focus, textarea:focus {
             border-color: var(--primary);
@@ -143,13 +135,12 @@
             padding: 10px;
             background: #fafafa;
             border: 1px dashed #bbb;
-            cursor: pointer;
         }
-        .btn-submit {
+        .btn-action {
             background-color: var(--success);
             color: white;
             border: none;
-            padding: 14px 30px;
+            padding: 12px 25px;
             font-size: 16px;
             border-radius: 6px;
             cursor: pointer;
@@ -157,10 +148,17 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            transition: background 0.3s;
         }
-        .btn-submit:hover {
-            background-color: #1b5e20;
+        .btn-danger {
+            background-color: var(--danger);
+        }
+        .login-box {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fafafa;
         }
         table {
             width: 100%;
@@ -175,11 +173,6 @@
         }
         th {
             background-color: #f8f9fa;
-            color: #333;
-            font-weight: 700;
-        }
-        tr:nth-child(even) {
-            background-color: #fafafa;
         }
         .badge {
             padding: 6px 12px;
@@ -188,15 +181,11 @@
             font-weight: bold;
             background-color: #fff3cd;
             color: #856404;
-            display: inline-block;
         }
         .doc-link {
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
-        }
-        .doc-link:hover {
-            text-decoration: underline;
         }
         .empty-row {
             text-align: center;
@@ -231,8 +220,8 @@
 <div class="container">
     <!-- નેવિગેશન ટૅબ્સ -->
     <div class="nav-tabs">
-        <button class="tab-btn active" onclick="switchTab('formSection', event)"><i class="fa-solid fa-file-pen"></i> ૧. નવી અરજી કરો (ફોર્મ)</button>
-        <button class="tab-btn" onclick="switchTab('dashboardSection', event)"><i class="fa-solid fa-chart-line"></i> ૨. લાઈવ ડેશબોર્ડ (એડમિન)</button>
+        <button class="tab-btn active" onclick="switchTab('formSection', event)"><i class="fa-solid fa-file-pen"></i> ૧. નવી અરજી કરો (અરજદાર)</button>
+        <button class="tab-btn" onclick="switchTab('dashboardSection', event)"><i class="fa-solid fa-lock"></i> ૨. એડમિન ડેશબોર્ડ (સુરક્ષિત)</button>
     </div>
 
     <!-- અરજી ફોર્મ સેક્શન -->
@@ -253,15 +242,15 @@
                     <input type="text" id="ulbName" value="છોટાઉદેપુર નગરપાલિકા" required>
                 </div>
                 <div class="form-group">
-                    <label>અરજદારનું ખરું પૂરું નામ (નામ, પિતાનું નામ, અટક):</label>
+                    <label>અરજદારનું ખરું પૂરું નામ:</label>
                     <input type="text" id="applicantName" placeholder="દા.ત. રમેશભાઈ મગનભાઈ પટેલ" required>
                 </div>
                 <div class="form-group">
-                    <label>ખાસ માન્ય મોબાઈલ નંબર (૧૦ અંક):</label>
-                    <input type="tel" id="mobileNo" pattern="[6-9][0-9]{9}" placeholder="૯૮૭૬૫૪૩૨૧૦" title="૧૦ અંકનો સાચો મોબાઈલ નંબર દાખલ કરો" required>
+                    <label>માન્ય મોબાઈલ નંબર (૧૦ અંક):</label>
+                    <input type="tel" id="mobileNo" pattern="[6-9][0-9]{9}" placeholder="૯૮૭૬૫૪૩૨૧૦" required>
                 </div>
                 <div class="form-group">
-                    <label>આધાર કાર્ડ નંબર (સુરક્ષિત એન્ટ્રી):</label>
+                    <label>આધાર કાર્ડ નંબર:</label>
                     <input type="text" id="aadharNo" placeholder="XXXX-XXXX-XXXX" required>
                 </div>
                 <div class="form-group">
@@ -273,39 +262,61 @@
                     <input type="text" id="zoneWard" placeholder="ઝોન ૧, વોર્ડ નં. ૩" required>
                 </div>
                 <div class="form-group">
-                    <label>પ્રોપર્ટીના પુરાવા કે દસ્તાવેજ અપલોડ કરો (PDF / Image):</label>
+                    <label>દસ્તાવેજ અપલોડ કરો (PDF / Image):</label>
                     <input type="file" id="propertyDoc" accept=".pdf, .jpg, .jpeg, .png" required>
                 </div>
                 <div class="form-group full-width">
                     <label>પૂરેપૂરું સરનામું:</label>
-                    <textarea id="address" rows="3" placeholder="સોસાયટીનું નામ, મકાન નંબર, આસપાસની વિગતો..." required></textarea>
+                    <textarea id="address" rows="3" placeholder="સોસાયટીનું નામ, મકાન નંબર..." required></textarea>
                 </div>
             </div>
-            <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> અરજી અને ડોક્યુમેન્ટ સબમિટ કરો</button>
+            <button type="submit" class="btn-action"><i class="fa-solid fa-paper-plane"></i> અરજી સબમિટ કરો</button>
         </form>
     </div>
 
-    <!-- એડમિન લાઈવ ડેશબોર્ડ સેક્શન -->
+    <!-- એડમિન ડેશબોર્ડ સેક્શન (પાસવર્ડ પ્રોટેקטेड) -->
     <div id="dashboardSection" class="section-box">
-        <h2>લાઈવ અરજીઓનું ડેશબોર્ડ (રીઅલ-ટાઇમ સિંક અને ડોક્યુમેન્ટ્સ)</h2>
-        <p style="margin-bottom: 15px; color: #555;">અરજદાર દ્વારા ભરાયેલી વિગતો અને અપલોડ કરેલા ડોક્યુમેન્ટ્સ અહીં ડાયરેક્ટ દેખાશે:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>અરજી આઈડી</th>
-                    <th>પ્રકાર</th>
-                    <th>અરજદારનું નામ</th>
-                    <th>મોબાઈલ નંબર</th>
-                    <th>ટેનામેન્ટ નંબર</th>
-                    <th>ડોક્યુમેન્ટ</th>
-                    <th>તારીખ/સમય</th>
-                    <th>સ્ટેટસ</th>
-                </tr>
-            </thead>
-            <tbody id="liveTableBody">
-                <!-- ડેટા ડાયનેમિકલી લોડ થશે -->
-            </tbody>
-        </table>
+        <!-- લોગિન ફોર્મ (શરૂઆતમાં આ દેખાશે) -->
+        <div id="adminLoginBox" class="login-box">
+            <h2><i class="fa-solid fa-lock"></i> એડમિન લોગિન</h2>
+            <form onsubmit="handleAdminLogin(event)">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>યુઝર આઈડી (Admin ID):</label>
+                    <input type="text" id="adminUser" placeholder="યુઝરનેમ દાખલ કરો" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label>પાસવર્ડ (Password):</label>
+                    <input type="password" id="adminPass" placeholder="પાસવર્ડ દાખલ કરો" required>
+                </div>
+                <button type="submit" class="btn-action">લોગિન કરો</button>
+            </form>
+            <p style="margin-top: 10px; font-size: 12px; color: #666;">(ડિફોલ્ટ આઈડી: <code>admin</code> અને પાસવર્ડ: <code>admin123</code>)</p>
+        </div>
+
+        <!-- અસલી ડેશબોર્ડ (લોગિન થયા પછી જ દેખાશે) -->
+        <div id="adminDashboardContent" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2>સુરક્ષિત એડમિન ડેશબોર્ડ (લાઈવ એન્ટ્રીઝ)</h2>
+                <button onclick="handleLogout()" class="btn-action btn-danger"><i class="fa-solid fa-right-from-bracket"></i> લોગઆઉટ કરો</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>અરજી આઈડી</th>
+                        <th>પ્રકાર</th>
+                        <th>અરજદારનું નામ</th>
+                        <th>મોબાઈલ નંબર</th>
+                        <th>ટેનામેન્ટ નંબર</th>
+                        <th>ડોક્યુમેન્ટ</th>
+                        <th>તારીખ/સમય</th>
+                        <th>સ્ટેટસ</th>
+                    </tr>
+                </thead>
+                <tbody id="liveTableBody">
+                    <!-- ડેટા અહીં લોડ થશે -->
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -323,8 +334,45 @@
         event.currentTarget.classList.add('active');
 
         if(sectionId === 'dashboardSection') {
-            loadApplications();
+            checkLoginStatus();
         }
+    }
+
+    // એડમિન લોગિન ચેક કરવા માટે
+    function handleAdminLogin(event) {
+        event.preventDefault();
+        const user = document.getElementById('adminUser').value;
+        const pass = document.getElementById('adminPass').value;
+
+        // અહીં તમે તમારી જરૂરિયાત મુજબ આઈડી અને પાસવર્ડ બદલી શકો છો
+        if (user === 'admin' && pass === 'admin123') {
+            sessionStorage.setItem('isAdminLoggedIn', 'true');
+            checkLoginStatus();
+            alert('સફળતાપૂર્વક લોગિન થઈ ગયા!');
+        } else {
+            alert('ખોટો યુઝર આઈડી અથવા પાસવર્ડ!');
+        }
+    }
+
+    // લોગિન સ્ટેટસ ચકાસણી
+    function checkLoginStatus() {
+        const isLoggedIn = sessionStorage.getItem('isAdminLoggedIn');
+        if (isLoggedIn === 'true') {
+            document.getElementById('adminLoginBox').style.display = 'none';
+            document.getElementById('adminDashboardContent').style.display = 'block';
+            loadApplications();
+        } else {
+            document.getElementById('adminLoginBox').style.display = 'block';
+            document.getElementById('adminDashboardContent').style.display = 'none';
+        }
+    }
+
+    // લોગઆઉટ ફંક્શન
+    function handleLogout() {
+        sessionStorage.removeItem('isAdminLoggedIn');
+        document.getElementById('adminUser').value = '';
+        document.getElementById('adminPass').value = '';
+        checkLoginStatus();
     }
 
     // ફોર્મ સબમિટ હેન્ડલર
@@ -345,33 +393,18 @@
             status: 'પેન્ડિંગ (ચકાસણી હેઠળ)'
         };
 
-        // લોકલ સ્ટોરેજમાંથી જૂનો ડેટા મેળવો
-        let applications = JSON.parse(localStorage.getItem('eNagarLiveAppsWithDocs')) || [];
-        
-        // નવી એન્ટ્રી સૌથી ઉપર ઉમેરો
+        let applications = JSON.parse(localStorage.getItem('eNagarSecureApps')) || [];
         applications.unshift(newApp);
+        localStorage.setItem('eNagarSecureApps', JSON.stringify(applications));
 
-        // અપડેટ કરેલ લિસ્ટ સેવ કરો
-        localStorage.setItem('eNagarLiveAppsWithDocs', JSON.stringify(applications));
-
-        alert('તમારી અરજી અને દસ્તાવેજ સફળતાપૂર્વક સબમિટ થઈ ગયા છે!\nતમારો અરજી આઈડી: ' + newApp.id);
-        
-        // ફોર્મ રીસેટ કરો અને ડેશબોર્ડ પર રીડાયરેક્ટ કરો
+        alert('તમારી અરજી સફળતાપૂર્વક સબમિટ થઈ ગઈ છે!\nતમારો અરજી આઈડી: ' + newApp.id);
         document.getElementById('propertyForm').reset();
-        
-        // ડેશબોર્ડ ટૅબ પર ઓટો સ્વિચ કરવા માટે
-        document.querySelectorAll('.section-box').forEach(box => box.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('dashboardSection').classList.add('active');
-        document.querySelectorAll('.tab-btn')[1].classList.add('active');
-        
-        loadApplications();
     }
 
     // ડેશબોર્ડ ટેબલ લોડ ફંક્શન
     function loadApplications() {
         const tableBody = document.getElementById('liveTableBody');
-        let applications = JSON.parse(localStorage.getItem('eNagarLiveAppsWithDocs')) || [];
+        let applications = JSON.parse(localStorage.getItem('eNagarSecureApps')) || [];
 
         if (applications.length === 0) {
             tableBody.innerHTML = `<tr><td colspan="8" class="empty-row"><i class="fa-solid fa-folder-open"></i> હજુ સુધી કોઈ નવી અરજી આવી નથી.</td></tr>`;
@@ -395,11 +428,6 @@
         });
         tableBody.innerHTML = html;
     }
-
-    // પેજ લોડ થતાં જ ડેટા સિંક કરો
-    window.onload = function() {
-        loadApplications();
-    };
 </script>
 
 </body>
