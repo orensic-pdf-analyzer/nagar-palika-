@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ગુજરાત ઇ-નગર - પ્રોપર્ટી મેનેજમેન્ટ પોર્ટલ</title>
+    <!-- Google Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1565c0;
+            --secondary: #ff8f00;
+            --success: #2e7d32;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans Gujarati', sans-serif;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #0d47a1, #1976d2);
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-area i {
+            font-size: 36px;
+            color: var(--secondary);
+        }
+        .logo-area h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .helpline {
+            background: rgba(255,255,255,0.15);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 12px;
+        }
+        .tab-btn {
+            background: #f1f3f4;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 12px 25px;
+            color: #555;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
+        }
+        .section-box {
+            display: none;
+        }
+        .section-box.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h2 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 10px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #444;
+        }
+        input, select, textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 5px rgba(21, 101, 192, 0.2);
+        }
+        input[type="file"] {
+            padding: 10px;
+            background: #fafafa;
+            border: 1px dashed #bbb;
+            cursor: pointer;
+        }
+        .btn-submit {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #1b5e20;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 14px;
+            text-align: left;
+            font-size: 14px;
+        }
+        th {
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: 700;
+        }
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            background-color: #fff3cd;
+            color: #856404;
+            display: inline-block;
+        }
+        .doc-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .doc-link:hover {
+            text-decoration: underline;
+        }
+        .empty-row {
+            text-align: center;
+            color: #777;
+            padding: 25px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 13px;
+            color: #666;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <i class="fa-solid fa-landmark"></i>
+        <div>
+            <h1>ગુજરાત ઇ-નગર (e-Nagar)</h1>
+            <small>મ્યુનિસિપાલિટી પ્રોપર્ટી ટેક્સ અને આકારણી પોર્ટલ</small>
+        </div>
+    </div>
+    <div class="helpline">
+        <i class="fa-solid fa-headset"></i> હેલ્પલાઇન: ૧૮૦૦-૨૩૩-૫૫૦૦
+    </div>
+</header>
+
+<div class="container">
+    <!-- નેવિગેશન ટૅબ્સ -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('formSection', event)"><i class="fa-solid fa-file-pen"></i> ૧. નવી અરજી કરો (ફોર્મ)</button>
+        <button class="tab-btn" onclick="switchTab('dashboardSection', event)"><i class="fa-solid fa-chart-line"></i> ૨. લાઈવ ડેશબોર્ડ (એડમિન)</button>
+    </div>
+
+    <!-- અરજી ફોર્મ સેક્શન -->
+    <div id="formSection" class="section-box active">
+        <h2>પ્રોપર્ટી સંબંધિત નવી અરજી અને ડોક્યુમેન્ટ અપલોડ</h2>
+        <form id="propertyForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>અરજીનો પ્રકાર:</label>
+                    <select id="appType" required>
+                        <option value="નવી પ્રોપર્ટી આકારણી">નવી પ્રોપર્ટી આકારણી (New Assessment)</option>
+                        <option value="નામ ફેર (વેચાણ દસ્તાવેજ)">નામ ફેર - વેચાણ દસ્તાવેજ (Sale Deed)</option>
+                        <option value="નામ ફેર (વારસાઈ)">નામ ફેર - વારસાઈ (Inheritance)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>ULB / નગરપાલિકાનું નામ:</label>
+                    <input type="text" id="ulbName" value="છોટાઉદેપુર નગરપાલિકા" required>
+                </div>
+                <div class="form-group">
+                    <label>અરજદારનું ખરું પૂરું નામ (નામ, પિતાનું નામ, અટક):</label>
+                    <input type="text" id="applicantName" placeholder="દા.ત. રમેશભાઈ મગનભાઈ પટેલ" required>
+                </div>
+                <div class="form-group">
+                    <label>ખાસ માન્ય મોબાઈલ નંબર (૧૦ અંક):</label>
+                    <input type="tel" id="mobileNo" pattern="[6-9][0-9]{9}" placeholder="૯૮૭૬૫૪૩૨૧૦" title="૧૦ અંકનો સાચો મોબાઈલ નંબર દાખલ કરો" required>
+                </div>
+                <div class="form-group">
+                    <label>આધાર કાર્ડ નંબર (સુરક્ષિત એન્ટ્રી):</label>
+                    <input type="text" id="aadharNo" placeholder="XXXX-XXXX-XXXX" required>
+                </div>
+                <div class="form-group">
+                    <label>ટેનામેન્ટ / પ્રોપર્ટી નંબર:</label>
+                    <input type="text" id="tenementNo" placeholder="દા.ત. TN-40592" required>
+                </div>
+                <div class="form-group">
+                    <label>ઝોન અને વોર્ડ:</label>
+                    <input type="text" id="zoneWard" placeholder="ઝોન ૧, વોર્ડ નં. ૩" required>
+                </div>
+                <div class="form-group">
+                    <label>પ્રોપર્ટીના પુરાવા કે દસ્તાવેજ અપલોડ કરો (PDF / Image):</label>
+                    <input type="file" id="propertyDoc" accept=".pdf, .jpg, .jpeg, .png" required>
+                </div>
+                <div class="form-group full-width">
+                    <label>પૂરેપૂરું સરનામું:</label>
+                    <textarea id="address" rows="3" placeholder="સોસાયટીનું નામ, મકાન નંબર, આસપાસની વિગતો..." required></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> અરજી અને ડોક્યુમેન્ટ સબમિટ કરો</button>
+        </form>
+    </div>
+
+    <!-- એડમિન લાઈવ ડેશબોર્ડ સેક્શન -->
+    <div id="dashboardSection" class="section-box">
+        <h2>લાઈવ અરજીઓનું ડેશબોર્ડ (રીઅલ-ટાઇમ સિંક અને ડોક્યુમેન્ટ્સ)</h2>
+        <p style="margin-bottom: 15px; color: #555;">અરજદાર દ્વારા ભરાયેલી વિગતો અને અપલોડ કરેલા ડોક્યુમેન્ટ્સ અહીં ડાયરેક્ટ દેખાશે:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>અરજી આઈડી</th>
+                    <th>પ્રકાર</th>
+                    <th>અરજદારનું નામ</th>
+                    <th>મોબાઈલ નંબર</th>
+                    <th>ટેનામેન્ટ નંબર</th>
+                    <th>ડોક્યુમેન્ટ</th>
+                    <th>તારીખ/સમય</th>
+                    <th>સ્ટેટસ</th>
+                </tr>
+            </thead>
+            <tbody id="liveTableBody">
+                <!-- ડેટા ડાયનેમિકલી લોડ થશે -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<footer>
+    &copy; ૨૦૨૬ ગુજરાત સરકાર - તમામ હકો સુરક્ષિત. ઇ-નગર પ્રોજેક્ટ.
+</footer>
+
+<script>
+    // ટૅબ સ્વિચ ફંક્શન
+    function switchTab(sectionId, event) {
+        document.querySelectorAll('.section-box').forEach(box => box.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+        document.getElementById(sectionId).classList.add('active');
+        event.currentTarget.classList.add('active');
+
+        if(sectionId === 'dashboardSection') {
+            loadApplications();
+        }
+    }
+
+    // ફોર્મ સબમિટ હેન્ડલર
+    function handleFormSubmit(event) {
+        event.preventDefault();
+
+        const fileInput = document.getElementById('propertyDoc');
+        const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'દસ્તાવેજ.pdf';
+
+        const newApp = {
+            id: 'GJ-ENGAR-' + Math.floor(100000 + Math.random() * 900000),
+            type: document.getElementById('appType').value,
+            name: document.getElementById('applicantName').value,
+            mobile: document.getElementById('mobileNo').value,
+            tenement: document.getElementById('tenementNo').value,
+            docName: fileName,
+            date: new Date().toLocaleString('gu-IN', { dateStyle: 'short', timeStyle: 'short' }),
+            status: 'પેન્ડિંગ (ચકાસણી હેઠળ)'
+        };
+
+        // લોકલ સ્ટોરેજમાંથી જૂનો ડેટા મેળવો
+        let applications = JSON.parse(localStorage.getItem('eNagarLiveAppsWithDocs')) || [];
+        
+        // નવી એન્ટ્રી સૌથી ઉપર ઉમેરો
+        applications.unshift(newApp);
+
+        // અપડેટ કરેલ લિસ્ટ સેવ કરો
+        localStorage.setItem('eNagarLiveAppsWithDocs', JSON.stringify(applications));
+
+        alert('તમારી અરજી અને દસ્તાવેજ સફળતાપૂર્વક સબમિટ થઈ ગયા છે!\nતમારો અરજી આઈડી: ' + newApp.id);
+        
+        // ફોર્મ રીસેટ કરો અને ડેશબોર્ડ પર રીડાયરેક્ટ કરો
+        document.getElementById('propertyForm').reset();
+        
+        // ડેશબોર્ડ ટૅબ પર ઓટો સ્વિચ કરવા માટે
+        document.querySelectorAll('.section-box').forEach(box => box.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('dashboardSection').classList.add('active');
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        
+        loadApplications();
+    }
+
+    // ડેશબોર્ડ ટેબલ લોડ ફંક્શન
+    function loadApplications() {
+        const tableBody = document.getElementById('liveTableBody');
+        let applications = JSON.parse(localStorage.getItem('eNagarLiveAppsWithDocs')) || [];
+
+        if (applications.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="8" class="empty-row"><i class="fa-solid fa-folder-open"></i> હજુ સુધી કોઈ નવી અરજી આવી નથી.</td></tr>`;
+            return;
+        }
+
+        let html = '';
+        applications.forEach(app => {
+            html += `
+                <tr>
+                    <td><strong style="color: var(--primary);">${app.id}</strong></td>
+                    <td>${app.type}</td>
+                    <td>${app.name}</td>
+                    <td>${app.mobile}</td>
+                    <td>${app.tenement}</td>
+                    <td><a href="#" class="doc-link" onclick="alert('ડાઉનલોડ સિમ્યુલેશન: ${app.docName}')"><i class="fa-solid fa-file-arrow-down"></i> ${app.docName}</a></td>
+                    <td>${app.date}</td>
+                    <td><span class="badge">${app.status}</span></td>
+                </tr>
+            `;
+        });
+        tableBody.innerHTML = html;
+    }
+
+    // પેજ લોડ થતાં જ ડેટા સિંક કરો
+    window.onload = function() {
+        loadApplications();
+    };
+</script>
+
+</body>
+</html>
