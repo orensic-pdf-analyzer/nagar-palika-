@@ -155,10 +155,11 @@
         .login-box {
             max-width: 400px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 25px;
             border: 1px solid #ddd;
             border-radius: 8px;
             background: #fafafa;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
         table {
             width: 100%;
@@ -274,9 +275,9 @@
         </form>
     </div>
 
-    <!-- એડમિન ડેશબોર્ડ સેક્શન (પાસવર્ડ પ્રોટેקטेड) -->
+    <!-- એડમિન ડેશબોર્ડ સેક્શન (સુરક્ષિત) -->
     <div id="dashboardSection" class="section-box">
-        <!-- લોગિન ફોર્મ (શરૂઆતમાં આ દેખાશે) -->
+        <!-- લોગિન ફોર્મ -->
         <div id="adminLoginBox" class="login-box">
             <h2><i class="fa-solid fa-lock"></i> એડમિન લોગિન</h2>
             <form onsubmit="handleAdminLogin(event)">
@@ -290,7 +291,6 @@
                 </div>
                 <button type="submit" class="btn-action">લોગિન કરો</button>
             </form>
-            <p style="margin-top: 10px; font-size: 12px; color: #666;">(ડિફોલ્ટ આઈડી: <code>admin</code> અને પાસવર્ડ: <code>admin123</code>)</p>
         </div>
 
         <!-- અસલી ડેશબોર્ડ (લોગિન થયા પછી જ દેખાશે) -->
@@ -338,14 +338,14 @@
         }
     }
 
-    // એડમિન લોગિન ચેક કરવા માટે
+    // એડમિન લોગિન ચકાસણી (તમારા યુઝરનેમ અને પાસવર્ડ સાથે)
     function handleAdminLogin(event) {
         event.preventDefault();
         const user = document.getElementById('adminUser').value;
         const pass = document.getElementById('adminPass').value;
 
-        // અહીં તમે તમારી જરૂરિયાત મુજબ આઈડી અને પાસવર્ડ બદલી શકો છો
-        if (user === 'admin' && pass === 'admin123') {
+        // અહીં સેટ કરેલા યુઝરનેમ અને પાસવર્ડ
+        if (user === 'chhotaudepur_admin' && pass === 'eNagar@2026#Admin') {
             sessionStorage.setItem('isAdminLoggedIn', 'true');
             checkLoginStatus();
             alert('સફળતાપૂર્વક લોગિન થઈ ગયા!');
@@ -393,9 +393,9 @@
             status: 'પેન્ડિંગ (ચકાસણી હેઠળ)'
         };
 
-        let applications = JSON.parse(localStorage.getItem('eNagarSecureApps')) || [];
+        let applications = JSON.parse(localStorage.getItem('eNagarSecureAppsCustom')) || [];
         applications.unshift(newApp);
-        localStorage.setItem('eNagarSecureApps', JSON.stringify(applications));
+        localStorage.setItem('eNagarSecureAppsCustom', JSON.stringify(applications));
 
         alert('તમારી અરજી સફળતાપૂર્વક સબમિટ થઈ ગઈ છે!\nતમારો અરજી આઈડી: ' + newApp.id);
         document.getElementById('propertyForm').reset();
@@ -404,7 +404,7 @@
     // ડેશબોર્ડ ટેબલ લોડ ફંક્શન
     function loadApplications() {
         const tableBody = document.getElementById('liveTableBody');
-        let applications = JSON.parse(localStorage.getItem('eNagarSecureApps')) || [];
+        let applications = JSON.parse(localStorage.getItem('eNagarSecureAppsCustom')) || [];
 
         if (applications.length === 0) {
             tableBody.innerHTML = `<tr><td colspan="8" class="empty-row"><i class="fa-solid fa-folder-open"></i> હજુ સુધી કોઈ નવી અરજી આવી નથી.</td></tr>`;
